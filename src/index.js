@@ -6,74 +6,68 @@ import axios from "axios";
 
 // console.log(data.results[0]);
 
-class Comments extends React.Component{
-  constructor(props){
+class Movies extends React.Component {
+  constructor(props) {
     super(props);
 
-    this.state = {Comments: []};
-
+    this.state = { Movies: [] };
   }
 
+  componentDidMount() {
+    axios
+      .get(
+        "https://api.themoviedb.org/3/trending/movie/day?api_key=27135d0f88a16655833c6950832b9adf"
+      )
+      .then(response => {
+        console.log(response.data.results);
 
-
-
-  componentDidMount(){
-    axios.get('https://jsonplaceholder.typicode.com/comments')
-    .then(response => {
-      this.setState({Comments: response.data});
-      // console.log(response.data);
-    })
-    .catch(error => {
-      console.log(error);
-    })
+        this.setState({ Movies: response.data.results });
+        // console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
-render(){
+  render() {
+    const movieList = this.state.Movies.map(m => (
+      <Movie
+        key={m.id}
+        poster_path={m.poster_path}
+        title={m.title}
+        vote_average={m.vote_average}
+        overview={m.overview}
+      />
+    ));
 
+    return <div className="container">{movieList}</div>;
+  }
+}
 
-  const commentList = this.state.Comments.map(c =>
-    <div className = "columns is-centered">
-      <div className = "column is-4">
-        <div className = "card">
-          <h4 className = "title is-4">{c.name}</h4>
-          <p className = "subtitle is-6">{c.email}</p>
-          <p className = "subtitle is-6">{c.body}</p>
+class Movie extends React.Component {
+  render() {
+    return (
+      <div className="columns is-centered">
+        <div className="column is-5">
+          <div className="card">
+            <div className="card-image">
+              <figure className="image is-4by3">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${this.props.poster_path}`}
+                  alt="Movie Poster"
+                />
+              </figure>
+            </div>
+            <h4 className="title is-4">{this.props.title}</h4>
+            <p className="subtitle is-6">
+              Average Rating {this.props.vote_average}
+            </p>
+            <p className="subtitle is-6">{this.props.overview}</p>
+          </div>
         </div>
       </div>
-    </div>
-  )
-
-
-  return(
-        <div className = "container">
-          {commentList}
-        </div>
-  )
-//hello
-
-//   render() {
-//   const userList = this.data.map(u => (
-//     <UserElement2
-//       key={u.name}
-//       first={u.name}
-//       // email={u.email}
-//       // picture={u.picture.large}
-//     />
-//   ));
-//   return (
-//     <div className="columns is-multiline">{userList}</div>
-//   )
-// }
-
+    );
+  }
 }
 
-
-}
-
-
-
-
-ReactDOM.render(
-  <Comments />,
-  document.getElementById("root")
-);
+ReactDOM.render(<Movies />, document.getElementById("root"));
