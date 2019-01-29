@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import TrendingMovies from "./TrendingMovies";
 import PopularMovies from "./PopularMovies";
+import RandomMovie from "./RandomMovie";
 class Main extends React.Component {
   render() {
     return (
@@ -45,6 +46,10 @@ class Main extends React.Component {
                   Popular
                 </Link>
 
+                <Link to="/randomMovie" className="navbar-item">
+                  Random Movie
+                </Link>
+
                 <div className="navbar-item has-dropdown is-hoverable">
                   <a className="navbar-link">More</a>
 
@@ -72,6 +77,7 @@ class Main extends React.Component {
           </nav>
           <Route exact path="/" component={TrendingMovies} />
           <Route path="/popularMovies" component={PopularMovies} />
+          <Route path="/randomMovie" component={RandomMovie} />
         </div>
       </BrowserRouter>
     );

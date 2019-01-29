@@ -40,6 +40,7 @@ class TrendingMovies extends React.Component {
         title={m.title}
         vote_average={m.vote_average}
         overview={m.overview}
+        id={m.id}
       />
     ));
 
