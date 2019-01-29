@@ -20,10 +20,10 @@ class TrendingMovies extends React.Component {
         "https://api.themoviedb.org/3/trending/movie/day?api_key=27135d0f88a16655833c6950832b9adf"
       )
       .then(response => {
-        console.log(response.data.results);
+        // console.log(response.data.results);
 
         this.setState({ TrendingMovies: response.data.results });
-        // console.log(response.data);
+        console.log(this.props.mainState);
         // console.log(response.data.results[0].overview);
 
       })

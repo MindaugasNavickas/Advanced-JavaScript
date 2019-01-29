@@ -5,6 +5,23 @@ import TrendingMovies from "./TrendingMovies";
 import PopularMovies from "./PopularMovies";
 import RandomMovie from "./RandomMovie";
 class Main extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+
+  handleInputChange = () => {
+    this.setState({
+      query: this.search.value
+    });
+    // console.log(this.state.query);
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -66,10 +83,17 @@ class Main extends React.Component {
               <div className="navbar-end">
                 <div className="navbar-item">
                   <div className="buttons">
-                    <a className="button is-primary">
-                      <strong>Sign up</strong>
-                    </a>
-                    <a className="button is-light">Log in</a>
+                    <div className="field">
+                      <div className="control">
+                        <input
+                          ref={input => (this.search = input)}
+                          onChange={this.handleInputChange}
+                          className="input inputBox"
+                          type="text"
+                          placeholder="Text input"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -78,6 +102,7 @@ class Main extends React.Component {
           <Route exact path="/" component={TrendingMovies} />
           <Route path="/popularMovies" component={PopularMovies} />
           <Route path="/randomMovie" component={RandomMovie} />
+          <TrendingMovies mainState={this.state.query} />
         </div>
       </BrowserRouter>
     );

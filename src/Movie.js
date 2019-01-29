@@ -10,8 +10,9 @@ class Movie extends React.Component {
     };
     console.log(this.state.buttonText);
     this.handleClick = this.handleClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
-  handleClick() {
+  handleClick = () => {
     this.setState(state => ({
       showFullText: !state.showFullText,
       buttonText: !this.buttonText,
@@ -19,6 +20,13 @@ class Movie extends React.Component {
     }));
     console.log(this.state.buttonText);
   }
+  handleInputChange = () => {
+    this.setState({
+      query: this.search.value
+    });
+    console.log(this.state.query);
+  }
+
   render() {
     if (this.props.overview.length > 200 && this.state.showFullText === false) {
       return (
