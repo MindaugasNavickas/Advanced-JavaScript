@@ -5,20 +5,26 @@ import TrendingMovies from "./TrendingMovies";
 import PopularMovies from "./PopularMovies";
 import RandomMovie from "./RandomMovie";
 class Main extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-
+      query: ""
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
+  // handleInputChange(event){
+  //   this.setState({
+  //     query: event.target.value
+  //   });
+  //   // console.log(this.state.query);
+  // }
 
-  handleInputChange = () => {
+  handleChange(event) {
     this.setState({
-      query: this.search.value
+      query: event.target.value
     });
+
     // console.log(this.state.query);
   }
 
@@ -85,11 +91,7 @@ class Main extends React.Component {
                   <div className="buttons">
                     <div className="field">
                       <div className="control">
-                        <input
-                          ref={input => (this.search = input)}
-                          onChange={this.handleInputChange}
-                          className="input inputBox"
-                          type="text"
+                        <input value={this.state.query} onChange={this.handleChange} className="input inputBox" type="text"
                           placeholder="Text input"
                         />
                       </div>
@@ -99,10 +101,17 @@ class Main extends React.Component {
               </div>
             </div>
           </nav>
-          <Route exact path="/" component={TrendingMovies} />
-          <Route path="/popularMovies" component={PopularMovies} />
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <TrendingMovies {...props} mainState={this.state.query} />
+            )}
+          />
+          <Route path="/popularMovies" render={props => (
+            <PopularMovies {...props} mainState={this.state.query} />
+          )} />
           <Route path="/randomMovie" component={RandomMovie} />
-          <TrendingMovies mainState={this.state.query} />
         </div>
       </BrowserRouter>
     );

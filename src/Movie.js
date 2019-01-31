@@ -8,7 +8,7 @@ class Movie extends React.Component {
       buttonText: true,
       condition: false
     };
-    console.log(this.state.buttonText);
+    // console.log(this.state.buttonText);
     this.handleClick = this.handleClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -18,14 +18,14 @@ class Movie extends React.Component {
       buttonText: !this.buttonText,
       condition: !this.state.condition
     }));
-    console.log(this.state.buttonText);
-  }
+    // console.log(this.state.buttonText);
+  };
   handleInputChange = () => {
     this.setState({
       query: this.search.value
     });
-    console.log(this.state.query);
-  }
+    console.log("Movie query " + this.state.query);
+  };
 
   render() {
     if (this.props.overview.length > 200 && this.state.showFullText === false) {
