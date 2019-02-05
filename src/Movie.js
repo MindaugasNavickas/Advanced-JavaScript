@@ -6,11 +6,13 @@ class Movie extends React.Component {
     this.state = {
       showFullText: false,
       buttonText: true,
-      condition: false
+      condition: false,
+      movieID: ''
     };
     // console.log(this.state.buttonText);
     this.handleClick = this.handleClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.movieHandleClick = this.movieHandleClick.bind(this);
   }
   handleClick = () => {
     this.setState(state => ({
@@ -27,10 +29,17 @@ class Movie extends React.Component {
     console.log("Movie query " + this.state.query);
   };
 
+  movieHandleClick = () => {
+    this.setState({
+      movieID: this.props.id
+    });
+    console.log(this.state.movieID);
+  };
+
   render() {
     if (this.props.overview.length > 200 && this.state.showFullText === false) {
       return (
-        <div className="column is-3 card">
+        <div className="column is-3 card is-mobile">
           <div
             className={
               this.state.condition
@@ -40,14 +49,15 @@ class Movie extends React.Component {
           >
             <div>
               <figure className="image">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${
-                    this.props.poster_path
-                  }`}
-                  alt="Movie Poster"
-                />
+                <a onClick={this.movieHandleClick}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${
+                      this.props.poster_path
+                    }`}
+                    alt="Movie Poster"
+                  />
+                </a>
               </figure>
-
               <h4 className="title is-4">{this.props.title}</h4>
               <p className="subtitle is-6">
                 Average Rating {this.props.vote_average}
@@ -80,14 +90,15 @@ class Movie extends React.Component {
           >
             <div>
               <figure className="image">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${
-                    this.props.poster_path
-                  }`}
-                  alt="Movie Poster"
-                />
+                <a onClick={this.movieHandleClick}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${
+                      this.props.poster_path
+                    }`}
+                    alt="Movie Poster"
+                  />
+                </a>
               </figure>
-
               <h4 className="title is-4">{this.props.title}</h4>
               <p className="subtitle is-6">
                 Average Rating {this.props.vote_average}
@@ -115,14 +126,15 @@ class Movie extends React.Component {
           >
             <div>
               <figure className="image">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${
-                    this.props.poster_path
-                  }`}
-                  alt="Movie Poster"
-                />
+                <a onClick={this.movieHandleClick}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${
+                      this.props.poster_path
+                    }`}
+                    alt="Movie Poster"
+                  />
+                </a>
               </figure>
-
               <h4 className="title is-4">{this.props.title}</h4>
               <p className="subtitle is-6">
                 Average Rating {this.props.vote_average}

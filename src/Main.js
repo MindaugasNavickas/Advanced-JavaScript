@@ -38,14 +38,6 @@ class Main extends React.Component {
             aria-label="main navigation"
           >
             <div className="navbar-brand">
-              <a className="navbar-item">
-                <img
-                  src="https://bulma.io/images/bulma-logo.png"
-                  width="112"
-                  height="28"
-                />
-              </a>
-
               <a
                 role="button"
                 className="navbar-burger burger"
@@ -72,26 +64,27 @@ class Main extends React.Component {
                 <Link to="/randomMovie" className="navbar-item">
                   Random Movie
                 </Link>
-
-                <div className="navbar-item has-dropdown is-hoverable">
-                  <a className="navbar-link">More</a>
-
-                  <div className="navbar-dropdown">
-                    <a className="navbar-item">About</a>
-                    <a className="navbar-item">Jobs</a>
-                    <a className="navbar-item">Contact</a>
-                    <hr className="navbar-divider" />
-                    <a className="navbar-item">Report an issue</a>
-                  </div>
-                </div>
               </div>
 
               <div className="navbar-end">
+                <a
+                  href="https://github.com/MindaugasNavickas/Advanced-JavaScript"
+                  className="navbar-item"
+                >
+                  <span className="icon">
+                    <i className="fab fa-github" />
+                  </span>
+                  <span>GitHub</span>
+                </a>
                 <div className="navbar-item">
                   <div className="buttons">
                     <div className="field">
                       <div className="control">
-                        <input value={this.state.query} onChange={this.handleChange} className="input inputBox" type="text"
+                        <input
+                          value={this.state.query}
+                          onChange={this.handleChange}
+                          className="input inputBox"
+                          type="text"
                           placeholder="Text input"
                         />
                       </div>
@@ -108,9 +101,12 @@ class Main extends React.Component {
               <TrendingMovies {...props} mainState={this.state.query} />
             )}
           />
-          <Route path="/popularMovies" render={props => (
-            <PopularMovies {...props} mainState={this.state.query} />
-          )} />
+          <Route
+            path="/popularMovies"
+            render={props => (
+              <PopularMovies {...props} mainState={this.state.query} />
+            )}
+          />
           <Route path="/randomMovie" component={RandomMovie} />
         </div>
       </BrowserRouter>

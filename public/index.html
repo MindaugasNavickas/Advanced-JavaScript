@@ -2,10 +2,33 @@
 <html lang="en">
   <head>
     <title>React App</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css" />
-    <link rel="stylesheet" href="css/style.css"</link>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <div id="root"></div>
   </body>
+
+  <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAWgOtND9JL3KubH9ke9WWw-m3Hzm7Qg2E",
+      authDomain: "moviereactappn00153466.firebaseapp.com",
+      databaseURL: "https://moviereactappn00153466.firebaseio.com",
+      projectId: "moviereactappn00153466",
+      storageBucket: "moviereactappn00153466.appspot.com",
+      messagingSenderId: "932238652734"
+    };
+    firebase.initializeApp(config);
+  </script>
 </html>

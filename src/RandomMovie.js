@@ -35,21 +35,24 @@ class RandomMovie extends React.Component {
   }
 
   render() {
-    if(this.state.RandMovie === null || this.state.RandMovie.poster_path === null){
+    if (
+      this.state.RandMovie === null ||
+      this.state.RandMovie.poster_path === null
+    ) {
       window.location.reload();
-    }else
-    return (
-      <div className="columns">
-        <SingleMovie
-          key={this.state.RandMovie.id}
-          poster_path={this.state.RandMovie.poster_path}
-          title={this.state.RandMovie.title}
-          vote_average={this.state.RandMovie.vote_average}
-          overview={this.state.RandMovie.overview}
-          id={this.state.RandMovie.id}
-        />
-      </div>
-    );
+    } else
+      return (
+        <div className="columns">
+          <SingleMovie
+            key={this.state.RandMovie.id}
+            poster_path={this.state.RandMovie.poster_path}
+            title={this.state.RandMovie.title}
+            vote_average={this.state.RandMovie.vote_average}
+            overview={this.state.RandMovie.overview}
+            id={this.state.RandMovie.id}
+          />
+        </div>
+      );
   }
 }
 export default RandomMovie;
